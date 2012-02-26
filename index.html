@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link href="favicon.ico" rel="shortcut icon">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Graph</title>  
+	<script src="js/lib/jquery-1.4.1.min.js"></script>
+	<script src="js/lib/graph.js"></script>
+	
+</head>
+<body>
+	<div style="float:left;">
+	<div class="title">Оценен</div>
+	<ul class="list">
+		<li class="active" data-graph="0"><a href="#">Профессиональный рост</a></li>
+		<li data-graph="1"><a href="#" >Соцпакет</a></li>
+		<li data-graph="2"><a href="#" >Команда</a></li>
+		<li><a href="#">Планы на пол года</a></li>
+		<li><a href="#">Уровень зарплаты</a></li>
+		<li><a href="#">Компания как бренд</a></li>
+		<li><a href="#">Идеальный работодатель</a></li>
+		<li><a href="#">Рабочее место</a></li>
+	</ul>
+	</div>
+	<div style="float:left;">
+	<canvas id="container"></canvas>
+	</div>
+	<script>
+		var config = {
+		width: 550, //ширина графика
+		height:430, //высота. Если их изменить то все отрисуется правильно.
+		middleLineColor: "rgb(133,205,250)",
+		axisX: {
+			max: 50,
+			points: [15, 20, 25, 30, 35, 40, 45, 50],
+			min: 15
+			
+		},
+		axisY: {
+			max:3,
+			min:0,
+			middle: 2.2,
+			points: [0, 1, 2, 3],
+			points2:[
+			         {val:0, lbl:"0"},
+			         {val:0.6, lbl:"20"},
+			         {val:1.2, lbl:"40"},
+			         {val:1.8, lbl:"60"},
+			         {val:2.4, lbl:"80"},
+			         {val:3, lbl:"100%"}
+				]
+		},
+		
+		data: [
+		       		{
+		       			color: "rgb(102,217,2)",
+		       			labelColor: "#EBFADD",
+		       			label: "Менеджмент", //пусть при наведении на точку появится подсказочка кому эта точка принадлежит
+		       			id: "someid",
+		       			points: [
+		       			         {x: 18, y: 1.2,  percent:42}, 
+		       			         {x: 28.4, y: 2, percent: 70},
+		       			         {x: 40.4, y: 0.8, percent: 10}
+		       			        ]
+		       		},
+		       		{
+		       			color: "rgb(0,150,245)",
+		       			labelColor: "#DFF1FD",
+		       			label: "Менеджер",
+		       			id: "someid2",
+		       			points: [{x: 28, y: 2.2, percent: 15}]
+		       		},
+		       		{
+		       			color: "rgb(241,220,45)",
+		       			labelColor: "#FDF9D8",
+		       			label: "Программист",
+		       			id: "someid3",
+		       			points: [
+		       			         {x: 19 , y: 0.0, percent: 12}, 
+		       			         {x: 24, y:0.6, percent: 15}, 
+		       			         {x: 28, y:3, percent: 1}]
+		       		}
+		       		
+		       ]
+}
+
+$(function(){
+	var chart = new Chart("#container", config);
+	chart.print(0);
+	$('.list li').click(function(){
+		$('.list li').removeClass();
+		$(this).addClass('active');
+		if ($(this).attr('data-graph')!==undefined)
+			chart.print($(this).attr('data-graph'));
+		return false;
+	})
+	
+})
+
+
+	</script>
+	
+</body>
+</html>
