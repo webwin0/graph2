@@ -81,7 +81,7 @@ function Chart(id, config){
 		bgfade.addColorStop(1.0, labelColor); // Fade to white in lower right
 		c.fillStyle = bgfade; // Gray fills
 		c.strokeStyle = color;
-		c.lineWidth = 2; 
+		c.lineWidth = 1; 
 		c.fill(); 
 		c.stroke();
 		c.closePath();
@@ -163,7 +163,7 @@ function Chart(id, config){
 				c.PrintLine(x, startY+graphHeight-10, x, startY+graphHeight-1,1,'#B2B2B2',DOTTED);
 			}
 			if (prevX !== undefined)
-				c.PrintLine(prevX, prevY, x, y,4,data.color);
+				c.PrintLine(prevX, prevY, x, y,3,data.color);
 			
 			//console.log(x,y,axisX.points[i],number2pixel);
 			points[i] = {x:x,y:y,data:data.points[i]}
@@ -172,7 +172,7 @@ function Chart(id, config){
 		}
 		for(var i in points)
 		{
-			c.Circle(points[i].x,points[i].y,5,3,data.color);
+			c.Circle(points[i].x,points[i].y,5,2,data.color);
 			c.Legend(points[i].x-23,points[i].y-55,points[i].data.y,points[i].data.percent+'%',data.color,data.labelColor);
 		}
 		
