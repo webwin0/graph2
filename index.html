@@ -7,8 +7,8 @@
 	<link rel="stylesheet" href="css/style.css">
 	<title>Graph</title>  
 	<script src="js/lib/jquery-1.4.1.min.js"></script>
-	<script src="js/lib/graph.js"></script>
-	
+	<script src="js/util/chart.js"></script>
+
 </head>
 <body>
 	<div style="float:left;">
@@ -31,17 +31,15 @@
 		var config = {
 		width: 550, //ширина графика
 		height:430, //высота. Если их изменить то все отрисуется правильно.
-		middleLineColor: "rgb(133,205,250)",
 		axisX: {
 			max: 50,
 			points: [15, 20, 25, 30, 35, 40, 45, 50],
 			min: 15
-			
+
 		},
 		axisY: {
 			max:3,
 			min:0,
-			middle: 2.2,
 			points: [0, 1, 2, 3],
 			points2:[
 			         {val:0, lbl:"0"},
@@ -52,13 +50,11 @@
 			         {val:3, lbl:"100%"}
 				]
 		},
-		
+
 		data: [
 		       		{
 		       			color: "rgb(102,217,2)",
 		       			labelColor: "#EBFADD",
-		       			label: "Менеджмент", //пусть при наведении на точку появится подсказочка кому эта точка принадлежит
-		       			id: "someid",
 		       			points: [
 		       			         {x: 18, y: 1.2,  percent:42}, 
 		       			         {x: 28.4, y: 2, percent: 70},
@@ -68,26 +64,23 @@
 		       		{
 		       			color: "rgb(0,150,245)",
 		       			labelColor: "#DFF1FD",
-		       			label: "Менеджер",
-		       			id: "someid2",
 		       			points: [{x: 28, y: 2.2, percent: 15}]
 		       		},
 		       		{
 		       			color: "rgb(241,220,45)",
 		       			labelColor: "#FDF9D8",
-		       			label: "Программист",
-		       			id: "someid3",
 		       			points: [
 		       			         {x: 19 , y: 0.0, percent: 12}, 
 		       			         {x: 24, y:0.6, percent: 15}, 
 		       			         {x: 28, y:3, percent: 1}]
 		       		}
-		       		
+
 		       ]
 }
 
 $(function(){
 	var chart = new Chart("#container", config);
+	//print graph for first tab
 	chart.print(0);
 	$('.list li').click(function(){
 		$('.list li').removeClass();
@@ -96,11 +89,11 @@ $(function(){
 			chart.print($(this).attr('data-graph'));
 		return false;
 	})
-	
+
 })
 
 
 	</script>
-	
+
 </body>
 </html>
